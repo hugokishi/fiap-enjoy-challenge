@@ -8,11 +8,11 @@
     "start": "node --experimental-modules dist/app/index.js",
     "start:dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/app/index.ts",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
-    "migration:run": "ts-node ./node_modules/.bin/typeorm migration:run",
-    "migration:generate": "ts-node ./node_modules/.bin/typeorm migration:generate -n",
-    "migration:create": "ts-node ./node_modules/.bin/typeorm migration:create -n",
-    "migration:revert": "ts-node ./node_modules/.bin/typeorm migration:revert",
-    "seed": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js seed"
+    "migration:run": "ts-node-dev ./node_modules/.bin/typeorm migration:run",
+    "migration:generate": "ts-node-dev ./node_modules/.bin/typeorm migration:generate -n",
+    "migration:create": "ts-node-dev ./node_modules/.bin/typeorm migration:create -n",
+    "migration:revert": "ts-node-dev ./node_modules/.bin/typeorm migration:revert",
+    "seed": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js seed"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -25,7 +25,9 @@
     "typeorm": "^0.2.37",
     "typeorm-seeding": "^1.6.1",
     "uuid": "^8.3.2",
-    "winston": "^3.3.3"
+    "winston": "^3.3.3",
+    "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^3.10.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
@@ -56,8 +58,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^4.2.1",
     "prettier": "^2.3.2",
-    "ts-node-dev": "^1.1.8",
-    "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5"
   }
 }
