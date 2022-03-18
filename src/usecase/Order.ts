@@ -19,8 +19,14 @@ export class OrderUseCase {
 
   public create = async (order: any): Promise<Order> => {
     const beer = await this.beerRepository.findManyBasedOnIds(order.beer)
+    let total = 0
+
+    beer.forEach((elm) => {
+      total = total + elm.price
+    })
 
     order.beer = beer
+    order.total = total
     return this.orderRepository.save(order)
   }
 }

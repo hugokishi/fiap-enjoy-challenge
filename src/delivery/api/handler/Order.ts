@@ -17,11 +17,9 @@ export class OrderHandler {
 
   public create = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { order, user, total, beer } = req.body
+      const { user, beer } = req.body
       const savedOrder = await this.orderUseCase.create({
-        order,
         user,
-        total,
         beer
       })
       res.send(savedOrder)
