@@ -12,6 +12,8 @@ export interface InformationsIFace {
   day_of_last_order: Date
   total_spend: number
   average_ticket: number
+  frequency_of_visits_1_month: number
+  favorite_beer_style: string
 }
 
 export type UserListOutput = {

@@ -3,17 +3,17 @@ import {
   Column,
   CreateDateColumn,
   PrimaryGeneratedColumn,
-  ManyToOne
+  ManyToOne,
+  ManyToMany,
+  JoinTable
 } from 'typeorm'
+import Beer from './Beer'
 import User from './User'
 
 @Entity()
 class Order {
   @PrimaryGeneratedColumn('increment')
   id?: number
-
-  @Column({ nullable: false, array: true })
-  order?: string
 
   @Column({ nullable: false })
   total?: number
@@ -26,6 +26,10 @@ class Order {
 
   @ManyToOne(() => User, (user) => user.orders)
   user: User
+
+  @ManyToMany(() => Beer, (beer) => beer.order)
+  @JoinTable()
+  beer?: Beer[]
 }
 
 export default Order

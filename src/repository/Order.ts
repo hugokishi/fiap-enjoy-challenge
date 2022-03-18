@@ -11,7 +11,11 @@ export class OrderRepository {
     this.database = database.getRepository(Order)
   }
 
-  public create = (order: any): Promise<Order> => {
+  public create = async (order: any): Promise<any> => {
+    return this.database.create(order)
+  }
+
+  public save = async (order: any): Promise<any> => {
     return this.database.save(order)
   }
 
@@ -19,6 +23,21 @@ export class OrderRepository {
     return this.database.findOne({
       where: {
         user: id
+      },
+      order: {
+        createdAt: 'DESC'
+      },
+      relations: ['beer']
+    })
+  }
+
+  public getLastMonthOrdersByUserId = (id: number): Promise<Order[]> => {
+    return this.database.find({
+      where: {
+        user: id,
+        createdAt: {
+          gt: new Date(new Date().setMonth(new Date().getMonth() - 1))
+        }
       },
       order: {
         createdAt: 'DESC'

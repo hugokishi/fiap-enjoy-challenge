@@ -3,9 +3,11 @@ import {
   Column,
   CreateDateColumn,
   PrimaryGeneratedColumn,
-  ManyToOne
+  ManyToOne,
+  ManyToMany
 } from 'typeorm'
 import BeerStyle from './BeerStyle'
+import Order from './Order'
 
 @Entity()
 class Beer {
@@ -25,7 +27,10 @@ class Beer {
   updatedAt!: Date
 
   @ManyToOne(() => BeerStyle, (beerStyle) => beerStyle.id)
-  style: number
+  style: BeerStyle
+
+  @ManyToMany(() => Order, (order) => order.beer)
+  order: Order[]
 }
 
 export default Beer

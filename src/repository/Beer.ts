@@ -22,6 +22,10 @@ export class BeerRepository {
       .leftJoinAndSelect('beer.style', 'style')
       .getMany()
   }
+
+  public findManyBasedOnIds = (ids: number[]): Promise<Beer[]> => {
+    return this.database.findByIds(ids)
+  }
 }
 
 export const init = () => {

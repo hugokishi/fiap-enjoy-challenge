@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm'
+import { Repository, UpdateResult } from 'typeorm'
 import { init as initDatabase } from '@driver/database/postgres'
 import User from '@domain/entity/User'
 import { UserCreateInput } from '@interfaces/User'
@@ -16,14 +16,33 @@ export class UserRepository {
     return this.database.save(user)
   }
 
-  // function to get user and user orders based on phone
+  public update = (
+    name: string,
+    cpf: string,
+    id: number
+  ): Promise<UpdateResult> => {
+    return this.database
+      .createQueryBuilder()
+      .update(User)
+      .set({ name, cpf })
+      .where('id = :id', { id })
+      .execute()
+  }
 
   public getUserByTelephone = (phone: string): Promise<User> => {
     return this.database.findOne({
       where: {
         phone
       },
-      relations: ['orders']
+      relations: ['orders', 'orders.beer', 'orders.beer.style']
+    })
+  }
+
+  public getUserById = (id: number): Promise<User> => {
+    return this.database.findOne({
+      where: {
+        id
+      }
     })
   }
 }

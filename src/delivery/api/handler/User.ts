@@ -15,12 +15,24 @@ export class BeerHandler {
 
     router.post('/users', this.create)
     router.get('/users/:phone', this.getUser)
+    router.put('/users/:id', this.update)
   }
 
   public create = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { phone, name, cpf }: UserCreateInput = req.body
       const user = await this.userUseCase.create({ phone, name, cpf })
+      res.send(user)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  public update = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { name, cpf } = req.body
+      const userId = req.params.id
+      const user = await this.userUseCase.update(name, cpf, Number(userId))
       res.send(user)
     } catch (error) {
       next(error)
