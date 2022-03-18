@@ -1,13 +1,5 @@
 const rootDir = process.env.ORM_ROOT_DIR
 
-const extra = process.env.NODE_ENV !== 'development' && {
-  extra: {
-    ssl: {
-      rejectUnauthorized: false
-    }
-  }
-}
-
 module.exports = {
   type: 'postgres',
   url: process.env.DATABASE_URL,
@@ -20,5 +12,9 @@ module.exports = {
     entitiesDir: 'src/domain/entity',
     migrationsDir: 'src/domain/migration'
   },
-  ...extra
+  extra: {
+    ssl: {
+      rejectUnauthorized: false
+    }
+  }
 }
