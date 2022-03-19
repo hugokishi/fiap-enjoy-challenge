@@ -49,11 +49,19 @@ export default class CreateInitialValues implements Seeder {
       .insert()
       .into(Beer)
       .values([
-        { beerName: 'Skol', price: 1.0, style: { id: 1 } },
-        { beerName: 'Brahma', price: 2.0, style: { id: 2 } },
-        { beerName: 'Original', price: 3.0, style: { id: 3 } },
-        { beerName: 'Heineken', price: 4.0, style: { id: 4 } },
-        { beerName: 'Hoegaarden', price: 5.0, style: { id: 5 } }
+        { beerName: 'Skol', price: 10.0, style: { id: 1 } },
+        { beerName: 'Brahma', price: 2.0, style: { id: 1 } },
+        { beerName: 'Original', price: 3.0, style: { id: 2 } },
+        { beerName: 'Heineken', price: 4.0, style: { id: 2 } },
+        { beerName: 'Hoegaarden', price: 4.0, style: { id: 3 } },
+        { beerName: 'Amstel', price: 6.0, style: { id: 3 } },
+        { beerName: 'Bohemia', price: 9.0, style: { id: 4 } },
+        { beerName: 'Corona', price: 10.0, style: { id: 4 } },
+        { beerName: 'Itaipava', price: 9.0, style: { id: 5 } },
+        { beerName: 'Stella Artois', price: 5.0, style: { id: 7 } },
+        { beerName: 'Kaiser', price: 4.0, style: { id: 9 } },
+        { beerName: 'Devassa', price: 7.0, style: { id: 10 } },
+        { beerName: 'Crystal', price: 8.0, style: { id: 15 } }
       ])
       .execute()
 
